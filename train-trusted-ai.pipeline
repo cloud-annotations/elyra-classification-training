@@ -9,24 +9,68 @@
       "id": "4851b63f-721c-4d12-b17b-3ccdca7a292f",
       "nodes": [
         {
-          "id": "b15c0865-fa80-484f-b545-712e20e8f990",
+          "id": "dd5b43f6-fb52-4239-961f-fc0cf425dddf",
           "type": "execution_node",
           "op": "execute-notebook-node",
           "app_data": {
-            "filename": "prepare-data-trusted-ai.ipynb",
-            "runtime_image": "amancevice/pandas:1.1.1",
+            "filename": "prepare-data-fairface-img-margin025-trainval.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
             "env_vars": [],
             "include_subdirectories": false,
             "outputs": [
-              "data"
+              "./train/female/76625.jpg",
+              "./train/female/76650.jpg",
+              "./train/female/6176.jpg",
+              "./train/female/79641.jpg",
+              "./train/female/12180.jpg",
+              "./train/female/49961.jpg",
+              "./train/female/15173.jpg",
+              "./train/female/8935.jpg",
+              "./train/female/13688.jpg",
+              "./train/female/29264.jpg",
+              "./train/female/54865.jpg",
+              "./train/female/82683.jpg",
+              "./train/female/15828.jpg",
+              "./train/female/69935.jpg",
+              "./train/female/47588.jpg",
+              "./train/female/8129.jpg",
+              "./train/female/52006.jpg",
+              "./train/female/79904.jpg",
+              "./train/female/74836.jpg",
+              "./train/female/49927.jpg",
+              "./train/female/28529.jpg",
+              "./train/female/15085.jpg",
+              "./train/female/31425.jpg",
+              "./train/female/23411.jpg",
+              "./train/female/13393.jpg",
+              "./train/female/43015.jpg",
+              "./train/female/16996.jpg",
+              "./train/female/17810.jpg",
+              "./train/female/84707.jpg",
+              "./train/female/2766.jpg",
+              "./train/female/54155.jpg",
+              "./train/female/27385.jpg",
+              "./train/female/58708.jpg",
+              "./train/female/30022.jpg",
+              "./train/female/38595.jpg",
+              "./train/female/50101.jpg",
+              "./train/female/44424.jpg",
+              "./train/female/15361.jpg",
+              "./train/female/48527.jpg",
+              "./train/female/12661.jpg",
+              "./train/female/32242.jpg"
             ],
-            "dependencies": [],
+            "dependencies": [
+              "fairface-img-margin025-trainval.zip",
+              "fairface_label_train.csv",
+              "fairface_label_val.csv"
+            ],
             "invalidNodeError": null,
             "ui_data": {
-              "label": "prepare-data-trusted-ai.ipynb",
+              "label": "prepare-data-fairface-img-margin025-trainval.ipynb",
               "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 52,
-              "y_pos": 143,
+              "x_pos": 99,
+              "y_pos": 203,
               "description": "Notebook file"
             }
           },
@@ -60,24 +104,22 @@
           ]
         },
         {
-          "id": "830608fd-3295-479d-9c9b-3a10cef909ea",
+          "id": "39b8f0f2-aa5a-4a99-9554-bcf572e8557f",
           "type": "execution_node",
           "op": "execute-notebook-node",
           "app_data": {
             "filename": "train-trusted-ai.ipynb",
-            "runtime_image": "tensorflow/tensorflow:2.3.0",
+            "runtime_image": "continuumio/anaconda3:2020.07",
             "env_vars": [],
             "include_subdirectories": false,
-            "outputs": [
-              "model"
-            ],
+            "outputs": [],
             "dependencies": [],
             "invalidNodeError": null,
             "ui_data": {
               "label": "train-trusted-ai.ipynb",
               "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 337.9999694824219,
-              "y_pos": 152,
+              "x_pos": 414,
+              "y_pos": 204,
               "description": "Notebook file"
             }
           },
@@ -95,117 +137,8 @@
               },
               "links": [
                 {
-                  "id": "140c0e0b-dad8-431d-b5aa-d3cfafcf2914",
-                  "node_id_ref": "b15c0865-fa80-484f-b545-712e20e8f990",
-                  "port_id_ref": "outPort"
-                }
-              ]
-            }
-          ],
-          "outputs": [
-            {
-              "id": "outPort",
-              "app_data": {
-                "ui_data": {
-                  "cardinality": {
-                    "min": 0,
-                    "max": -1
-                  },
-                  "label": "Output Port"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "id": "6024ac31-d6f9-44fe-91c2-467278a5886d",
-          "type": "execution_node",
-          "op": "execute-notebook-node",
-          "app_data": {
-            "filename": "confusion-matrix.ipynb",
-            "runtime_image": "tensorflow/tensorflow:2.3.0",
-            "env_vars": [],
-            "include_subdirectories": false,
-            "invalidNodeError": null,
-            "outputs": [],
-            "dependencies": [],
-            "ui_data": {
-              "label": "confusion-matrix.ipynb",
-              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 669,
-              "y_pos": 171,
-              "description": "Notebook file"
-            }
-          },
-          "inputs": [
-            {
-              "id": "inPort",
-              "app_data": {
-                "ui_data": {
-                  "cardinality": {
-                    "min": 0,
-                    "max": -1
-                  },
-                  "label": "Input Port"
-                }
-              },
-              "links": [
-                {
-                  "id": "1e6ecb3b-49d5-4d6f-a93b-38fdaaa9055a",
-                  "node_id_ref": "830608fd-3295-479d-9c9b-3a10cef909ea",
-                  "port_id_ref": "outPort"
-                }
-              ]
-            }
-          ],
-          "outputs": [
-            {
-              "id": "outPort",
-              "app_data": {
-                "ui_data": {
-                  "cardinality": {
-                    "min": 0,
-                    "max": -1
-                  },
-                  "label": "Output Port"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "id": "6b479aed-6a0d-4b7a-a6c9-bfc7f01d8968",
-          "type": "execution_node",
-          "op": "execute-notebook-node",
-          "app_data": {
-            "filename": "lime.ipynb",
-            "runtime_image": "",
-            "env_vars": [],
-            "include_subdirectories": false,
-            "ui_data": {
-              "label": "lime.ipynb",
-              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 579,
-              "y_pos": 330,
-              "description": "Notebook file"
-            }
-          },
-          "inputs": [
-            {
-              "id": "inPort",
-              "app_data": {
-                "ui_data": {
-                  "cardinality": {
-                    "min": 0,
-                    "max": -1
-                  },
-                  "label": "Input Port"
-                }
-              },
-              "links": [
-                {
-                  "id": "8fa6bf96-da7c-445d-bcc4-36199cb7dbf7",
-                  "node_id_ref": "830608fd-3295-479d-9c9b-3a10cef909ea",
+                  "id": "660464e3-4e0c-4c5d-b016-2eab9783380e",
+                  "node_id_ref": "dd5b43f6-fb52-4239-961f-fc0cf425dddf",
                   "port_id_ref": "outPort"
                 }
               ]
