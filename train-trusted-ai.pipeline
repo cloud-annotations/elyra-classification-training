@@ -18,59 +18,21 @@
             "env_vars": [],
             "include_subdirectories": false,
             "outputs": [
-              "./train/female/76625.jpg",
-              "./train/female/76650.jpg",
-              "./train/female/6176.jpg",
-              "./train/female/79641.jpg",
-              "./train/female/12180.jpg",
-              "./train/female/49961.jpg",
-              "./train/female/15173.jpg",
-              "./train/female/8935.jpg",
-              "./train/female/13688.jpg",
-              "./train/female/29264.jpg",
-              "./train/female/54865.jpg",
-              "./train/female/82683.jpg",
-              "./train/female/15828.jpg",
-              "./train/female/69935.jpg",
-              "./train/female/47588.jpg",
-              "./train/female/8129.jpg",
-              "./train/female/52006.jpg",
-              "./train/female/79904.jpg",
-              "./train/female/74836.jpg",
-              "./train/female/49927.jpg",
-              "./train/female/28529.jpg",
-              "./train/female/15085.jpg",
-              "./train/female/31425.jpg",
-              "./train/female/23411.jpg",
-              "./train/female/13393.jpg",
-              "./train/female/43015.jpg",
-              "./train/female/16996.jpg",
-              "./train/female/17810.jpg",
-              "./train/female/84707.jpg",
-              "./train/female/2766.jpg",
-              "./train/female/54155.jpg",
-              "./train/female/27385.jpg",
-              "./train/female/58708.jpg",
-              "./train/female/30022.jpg",
-              "./train/female/38595.jpg",
-              "./train/female/50101.jpg",
-              "./train/female/44424.jpg",
-              "./train/female/15361.jpg",
-              "./train/female/48527.jpg",
-              "./train/female/12661.jpg",
-              "./train/female/32242.jpg"
+              "data.zip",
+              "data_small.zip"
             ],
             "dependencies": [
-              "fairface-img-margin025-trainval.zip",
+              null,
               "fairface_label_train.csv",
-              "fairface_label_val.csv"
+              "fairface_label_val.csv",
+              "codait_utils.ipynb"
             ],
             "invalidNodeError": null,
             "ui_data": {
               "label": "prepare-data-fairface-img-margin025-trainval.ipynb",
               "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 99,
-              "y_pos": 203,
+              "x_pos": 50,
+              "y_pos": 50,
               "description": "Notebook file"
             }
           },
@@ -112,14 +74,21 @@
             "runtime_image": "continuumio/anaconda3:2020.07",
             "env_vars": [],
             "include_subdirectories": false,
-            "outputs": [],
-            "dependencies": [],
+            "outputs": [
+              "model.zip",
+              "data.zip"
+            ],
+            "dependencies": [
+              "codait_utils.ipynb"
+            ],
             "invalidNodeError": null,
+            "cpu": 2,
+            "memory": 1,
             "ui_data": {
               "label": "train-trusted-ai.ipynb",
               "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
-              "x_pos": 414,
-              "y_pos": 204,
+              "x_pos": 50,
+              "y_pos": 170,
               "description": "Notebook file"
             }
           },
@@ -139,6 +108,123 @@
                 {
                   "id": "660464e3-4e0c-4c5d-b016-2eab9783380e",
                   "node_id_ref": "dd5b43f6-fb52-4239-961f-fc0cf425dddf",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "3f027292-2fdd-48a3-9cf3-e4a7b3e4f702",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "lime.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "env_vars": [],
+            "include_subdirectories": false,
+            "invalidNodeError": null,
+            "outputs": [],
+            "dependencies": [
+              "codait_utils.ipynb"
+            ],
+            "ui_data": {
+              "label": "lime.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 397,
+              "y_pos": 147,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "a3cf4ec3-f366-4e75-aacb-27ab24fb2a97",
+                  "node_id_ref": "39b8f0f2-aa5a-4a99-9554-bcf572e8557f",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "5dae26bd-848e-4ef5-a60f-5b091f265505",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "aif360.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "env_vars": [],
+            "include_subdirectories": false,
+            "invalidNodeError": null,
+            "outputs": [],
+            "dependencies": [
+              "codait_utils.ipynb",
+              "fairface_label_val.csv"
+            ],
+            "ui_data": {
+              "label": "aif360.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 422,
+              "y_pos": 291,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "3fbf6635-95d0-4a49-9683-bf3967a2bc42",
+                  "node_id_ref": "39b8f0f2-aa5a-4a99-9554-bcf572e8557f",
                   "port_id_ref": "outPort"
                 }
               ]
