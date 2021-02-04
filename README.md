@@ -44,6 +44,28 @@ You need to have a local docker installation to run the Elyra/JupyterLab image w
 # The TrustedAI image classicifation pipeline ##TODO romeo
 In this section we ant to introduce you to TrustedAI with it's subcategories "Bias/Fairness detection", "Explainability" and "Adversarial Robustness".
 
+## Bias/Fairness detection detection 
+So what is bias? [Wikipedia](https://en.wikipedia.org/wiki/Bias) says: "Bias is a disproportionate weight in favor of or against an idea or thing, usually in a way that is closed-minded, prejudicial, or unfair." So here we have it? We want our model to be fair and unbiased towards protected attributes like gender, race, age, socioeconomic status, religion and so on. So wouldn't it be easy to just not "give" the model those data during training? It turns out that it isn't that simple. Protected attributes are often encoded in other attributes. For example, race, religion and socioeconomic status are latently encoded in attributes like zip code, contact method or types of products purchased. Going into more details would go beyond the scope of this article. Therefore we highly recommend to read through the supplementary materials at the end of this article.
+
+## Explainability
+
+Besides their stunning performance, deep learning models face a lot of resistance for production usage because they are considered as black box. Technically (and mathematically) deep learning models are a series of non-linear feature space transformations - sounds scary, but in other words, per definition it is very hard to understand the individual processing steps a deep learning network performs. But techniques exist to look over the deep earning model's shoulders.  The one we are using here is called [LIME](https://github.com/marcotcr/lime). LIME takes the existing classification model and permutes images taken from the validation set (therefore the real class label is known) as long as a misclassification is happening. That way LIME can be used to create heat maps as image overlays to indicate regions of images which are most relevant for the classifier to perform best. In other words, we identify regions of the image the classifier is looking at. 
+
+As the following figure illustrates, the most relevant areas in an image for classifying gender are areas showing hair, eyes and mouth.
+
+![Example on how LIME helps to identify classification relevant areas of an image](./images/lime1.png)
+
+Again, going into more details would go beyond the scope of this article. Please read through the supplementary materials at the end of this article. 
+
+## Adversarial Robustness
+Adversarial Robustness is all about model stability. Somewhat related to LIME, it asks the question, how much of (adversarial) noise a model tolerates before a misclassification happens. So an adversarial poisoning training data before model training happens or somebody with "physical" access to the model parameters coming up with slightly modified input data to control the model in his or her favour. As the figure below illustrates by adding only slight traces of adversarial noise, the deep learning model misclassifies a stop sign as yield sign. 
+
+TODO why is figure caption not rendered?
+
+![Example of adversarial manipulation of an input image, initially classified correctly as a stop sign by a deep neural network, to have it misclassified as a “give way” sign. The adversarial noise is magnified for visibility but remains undetectable in the resulting adversarial image. Source: Pluribus One](./images/art1.png)
+
+Now at the latest it should be clear that deep learning models see and understand data differently than humans and we have to make sure that we understand these models (and their limitations) as well as possible and make them robust against attacks of any kind.
+
 ## Understanding the fair faces dataset #TODO romeo
 
 ## Understanding bias #TODO romeo
