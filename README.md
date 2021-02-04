@@ -42,6 +42,7 @@ You need to have a local docker installation to run the Elyra/JupyterLab image w
 
 
 # The TrustedAI image classicifation pipeline ##TODO romeo
+In this section we ant to introduce you to TrustedAI with it's subcategories "Bias/Fairness detection", "Explainability" and "Adversarial Robustness".
 
 ## Understanding the fair faces dataset #TODO romeo
 
