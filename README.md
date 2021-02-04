@@ -31,6 +31,25 @@ You need to have a local docker installation to run the Elyra/JupyterLab image w
 ## Kubeflow Pipelines setup #TODO romeo
 
 
+# The standard image classification pipeline #TODO nick
+
+## Introducing the Elyra Pipeline Editor #TODO nick
+
+### Local Execution #TODO nick
+
+### Execution on Kubeflow #TODO nick
+
+
+
+# The TrustedAI image classicifation pipeline ##TODO romeo
+
+## Understanding the fair faces dataset #TODO romeo
+
+## Understanding bias #TODO romeo
+
+## How can models be explained? #TODO romeo
+
+
 
 # 5. Summary
     You've learned how to visually create, schedule and run production grade, open source machine learning pipelines on top of Kubeflow using an image classifier template.
