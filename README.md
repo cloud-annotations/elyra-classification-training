@@ -66,11 +66,10 @@ TODO why is figure caption not rendered?
 
 Now at the latest it should be clear that deep learning models see and understand data differently than humans and we have to make sure that we understand these models (and their limitations) as well as possible and make them robust against attacks of any kind.
 
-## Understanding the fair faces dataset #TODO romeo
+## Understanding the fair faces dataset
+Image datasets containing (gender) labeled faces are usually biased towards the caucasian race. The researchers at the University of California in Los Angeles created an open dataset published under the Creative Commons License [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) containing 108,501 balanced over seven race groups. Besides the dataset they've also released a deep learning classifier but we're creating one on our own. You can find out more about this project [here](https://openaccess.thecvf.com/content/WACV2021/papers/Karkkainen_FairFace_Face_Attribute_Dataset_for_Balanced_Race_Gender_and_Age_WACV_2021_paper.pdf) and get access to the data and code [here](https://github.com/joojs/fairface).
 
-## Understanding bias #TODO romeo
-
-## How can models be explained? #TODO romeo
+# The TrustedAI image classification pipeline #TODO romeo
 
 
 
