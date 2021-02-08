@@ -74,7 +74,7 @@ After your bucket is created and named, it will prompt you to choose an annotati
 ## Labeling the data
 1. Create the desired labels
    ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/create-label-button.png)
-2. Upload a video or some images
+2. Upload images
    ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/upload-media-classification.png)
 3. Select images then choose `Label` > `DESIRED_LABEL`
    ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/label-donuts.png)
