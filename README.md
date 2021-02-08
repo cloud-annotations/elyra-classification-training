@@ -1,4 +1,4 @@
-# 1. Title: How to build a scalable open source (Trusted AI) Visual Recognition pipeline with Elyra, TensorFlow and Kubernetes
+# 1. Title: How to build a scalable open source (Trusted AI) Visual Recognition pipeline with Elyra/Jupyter Lab, TensorFlow, Kubeflow and Kubernetes
 
 
 
@@ -32,6 +32,12 @@ You need to have a local docker installation to run the Elyra/JupyterLab image w
 
 
 # The standard image classification pipeline #TODO nick
+#TODO nick please write some paragraphs on the pipeline concept and how it relates to ml-ops
+
+## Data Preparation
+TODO nick explain the folder/label format: The de-facto standard for ....
+
+## Model Training
 
 ## Introducing the Elyra Pipeline Editor #TODO nick
 
@@ -69,7 +75,50 @@ Now at the latest it should be clear that deep learning models see and understan
 ## Understanding the fair faces dataset
 Image datasets containing (gender) labeled faces are usually biased towards the caucasian race. The researchers at the University of California in Los Angeles created an open dataset published under the Creative Commons License [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) containing 108,501 balanced over seven race groups. Besides the dataset they've also released a deep learning classifier but we're creating one on our own. You can find out more about this project [here](https://openaccess.thecvf.com/content/WACV2021/papers/Karkkainen_FairFace_Face_Attribute_Dataset_for_Balanced_Race_Gender_and_Age_WACV_2021_paper.pdf) and get access to the data and code [here](https://github.com/joojs/fairface).
 
-# The TrustedAI image classification pipeline #TODO romeo
+# The TrustedAI image classification pipeline
+As already mentioned previously, pipelines are a great way to introduce reproducibility, scaling, auditability and collaboration in machine learning. Pipelines are often a central part of a ML-Ops strategy. This especially holds for TrustedAI pipelines since reproducibility and auditability are even more important there. The following figure illustrates the TrustedAI pipeline.
+
+![Example of the TrustedAI pipeline TODO fix image caption not displayed](./images/trusted_ai_pipeline1.png)
+
+In the following we'll walk you through the different pipeline steps and associated code snippets worth having a closer look at.
+
+## Data Preparation
+In this particular case, we're not pulling Cloud Annotations export data from a S3/Cloud Object Store as before but directly access it from a Cloud Object Store via a public and permanent link. As described before, the the de-facto standard for labeled image data is putting images into one folder per class/category. But in this particular case, the raw data isn't in the required format. It's just a folder full of images and their properties are described in a separate CSV file. In addition to the class (or label) - gender in this case -  this CSV file also contains information on the race and age group. So first, we just use the information on the gender label given in the CSV file and arrange the images in the appropriate folder struture. The following figure illustrates this.
+
+![Desired folder structure of training and validation data TODO fix image caption not displayed](./images/images_folder_tree.png)
+
+
+## Model Training
+Understanding, defining and training deep learning models is an art on it's own. Luckuly, the community trends towards pre-defined models. Here, we are using the so called MobileNetV2 which ships with the TensorFlow distribution - ready to use, without any further definition of neurons or layers. As the following code shows, only a couple of parameters need to be specified.
+
+```python
+model = tf.keras.applications.MobileNetV2(
+    input_shape=(244,244,3), alpha=1.0, include_top=False,
+    input_tensor=None, pooling=None, classes=2,
+    classifier_activation='softmax'
+)
+model = my_net(model)
+```
+
+The parameter *input_shape* tell the model what size the images are and  *classes* specifies the number of classes to predict - two in this case as we are classifying between male and female only. You can learn more about this model [here](https://www.tensorflow.org/api_docs/python/tf/keras/applications/MobileNetV2). If you want to learn more about Keras and TensorFlow for image classification, especially to understand the standard define, compile and fit operations, please have a look at the following [blog](https://victorzhou.com/blog/keras-neural-network-tutorial/).
+
+
+
+## Model Evaluation
+Besides define, compile and fit a model needs to be evaluated before it goes into production. Whereas evaluating classification performance against the target labels has been state-of-the-art since the beginning of machine learning, taking TrustedAI measures into account is just a newly emerging practice. Therefore, we'll walk you trough the different pipeline steps where we evaluate our newly trained model.
+
+### Confusion Matrix
+The [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix) is the de-facto standard when it comes to classifier performance evaluation. There exist lots of single value performance indicators, but what this one basically tells you is how good or bad the classifier is doing among different classes (groups of cases) - which lets you detect skewed performance. 
+
+TODO insert pic and elaborate on it
+
+This of course comes in quite handy as well if we want to asses bias towards unterpreviledged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
+
+### Fairness Assessment
+
+### Explainability
+
+## 
 
 
 
