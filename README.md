@@ -16,15 +16,68 @@ You need to have a local docker installation to run the Elyra/JupyterLab image w
     30 minutes
 
 
-# Understanding Annotations #TODO nick
+# Preparing training data
+In order to train a model to classify images, we need a dataset to teach it. We can use the Cloud Annotation tool to organize and label our images so that we can use them to train our own custom model.
 
-## The Cloud Annotations tool #TODO nick
+## The Cloud Annotations tool
+Cloud Annotations is built on top of IBM Cloud Object Storage. Using a cloud object storage offering provides a reliable place to store training data. It also opens up the potential for collaboration, letting a team to simultaneously annotate the dataset in real-time.
 
-## Upload and annotate your images #TODO nick
+IBM Cloud offers a lite tier of object storage, which includes 25 GB of free storage.
 
-# Environment Setup #TODO nick
+Before you start, sign up for a free [IBM Cloud](https://ibm.biz/cloud-annotations-dashboard) account.
 
-## COS setup #TODO nick
+## Training data best practices
+To train a computer vision model you need a lot of images.
+Cloud Annotations supports uploading both photos and videos.
+However, before you start snapping, there's a few limitations to consider.
+
+- **Object Type** The model is optimized for photographs of objects in the real world. They are unlikely to work well for x-rays, hand drawings, scanned documents, receipts, etc.
+- **Object Environment** The training data should be as close as possible to the data on which predictions are to be made. For example, if your use case involves blurry and low-resolution images (such as from a security camera), your training data should be composed of blurry, low-resolution images. In general, you should also consider providing multiple angles, resolutions, and backgrounds for your training images.
+- **Difficulty** The model generally can't predict labels that humans can't assign. So, if a human can't be trained to assign labels by looking at the image for 1-2 seconds, the model likely can't be trained to do it either.
+- **Label Count** We recommend at least 50 labels per object category for a usable model, but using 100s or 1000s would provide better results.
+- **Image Dimensions** The model resizes the image to 300x300 pixels, so keep that in mind when training the model with images where one dimension is much longer than the other.
+  ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/shrink_image.png)
+- **Object Size** The object of interests size should be at least ~5% of the image area to be detected. For example, on the resized 300x300 pixel image the object should cover ~60x60 pixels.
+  ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/small_image.png)
+
+## Set up Cloud Annotations
+To use Cloud Annotations just navigate to [cloud.annotations.ai](https://cloud.annotations.ai) and click **Continue with IBM Cloud**.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/0a.CA_login.png)
+
+Once logged, if you don't have an object storage instance, it will prompt you to create one. Click **Get started** to be directed to IBM Cloud, where you can create a free object storage instance.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/1a.CA_no-object-storage.png)
+
+You might need to re-login to IBM Cloud to create a resource.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/2a.IBM_login-to-create-resource.png)
+
+Choose a pricing plan and click **Create**, then **Confirm** on the following popup.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/3a.IBM_create-object-storage.png)
+
+Once your object storage instance has been provisioned, navigate back to [cloud.annotations.ai](https://cloud.annotations.ai) and refresh the page.
+
+The files and annotations will be stored in a **bucket**, You can create one by clicking **Start a new project**.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/4a.CA_create-bucket.png)
+
+Give the bucket a unique name.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/5.CA_name-bucket.png)
+
+After your bucket is created and named, it will prompt you to choose an annotation type. Choose `Classification`.
+
+![](https://cloud.annotations.ai/docs-assets/generated_images@2x/6a.CA_set-type-classification.png)
+
+## Labeling the data
+1. Create the desired labels
+   ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/create-label-button.png)
+2. Upload a video or some images
+   ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/upload-media-classification.png)
+3. Select images then choose `Label` > `DESIRED_LABEL`
+   ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/label-donuts.png)
 
 ## Elyra setup #TODO nick
 
