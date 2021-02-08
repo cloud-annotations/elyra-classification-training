@@ -171,6 +171,14 @@ So using the confusion matrix we see that our classifier is already doing quite 
 
 This of course comes in quite handy as well if we want to asses bias towards unterpreviledged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
 
+The following python code shows how the confusion matrix can be compted for different subsets based on age group and race:
+
+```python
+newdf = df.query('race == "White" & age == "20-29"')
+matrix = metrics.confusion_matrix(newdf.labels, newdf.prediction)
+pd.DataFrame(matrix)
+```
+
 ### Fairness Assessment
 
 ### Explainability
