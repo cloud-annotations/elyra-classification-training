@@ -161,9 +161,13 @@ The parameter *input_shape* tell the model what size the images are and  *classe
 Besides define, compile and fit a model needs to be evaluated before it goes into production. Whereas evaluating classification performance against the target labels has been state-of-the-art since the beginning of machine learning, taking TrustedAI measures into account is just a newly emerging practice. Therefore, we'll walk you trough the different pipeline steps where we evaluate our newly trained model.
 
 ### Confusion Matrix
-The [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix) is the de-facto standard when it comes to classifier performance evaluation. There exist lots of single value performance indicators, but what this one basically tells you is how good or bad the classifier is doing among different classes (groups of cases) - which lets you detect skewed performance. 
+The [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix) is the de-facto standard when it comes to classifier performance evaluation. There exist lots of single value performance indicators, but what this one basically tells you is how good or bad the classifier is doing among different classes (groups of cases) - which lets you detect skewed performance. So let' start with a confusion matrix targeted towards classification performance illustrated by the following figure.
 
-TODO insert pic and elaborate on it
+![A confusion matrix we are generating TODO fix image caption not displayed](./images/confusion_matrix1.png)
+
+As you can see, 17479 images have been correctly predicted as female, only 2025 as male. On the other hand, 33 males have been predicted as females and only two as males.
+
+So using the confusion matrix we see that our classifier is already doing quite good for females but very bad for males.
 
 This of course comes in quite handy as well if we want to asses bias towards unterpreviledged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
 
