@@ -171,7 +171,7 @@ So using the confusion matrix we see that our classifier is already doing quite 
 
 This of course comes in quite handy as well if we want to asses bias towards unterpreviledged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
 
-The following python code shows how the confusion matrix can be compted for different subsets based on age group and race:
+The following python code shows how the confusion matrix can be computed for different subsets based on age group and race:
 
 ```python
 newdf = df.query('race == "White" & age == "20-29"')
@@ -180,15 +180,25 @@ pd.DataFrame(matrix)
 ```
 
 ### Fairness Assessment
+Fairness assessment and bias detection is an art on it's own. Luckily a huge number of single number metrics exist to assess bias in data and models. Here, we are using the AIF360 library which IBM donated to the Linux Foundation AI and therefore is under open governance. The following figure shows how such a single number metric called "Statistical Parity Difference" is displayed.
+
+![A confusion matrix we are generating TODO fix image caption not displayed](./images/aif1.png)
+
+Going into more details would go beyond the scope of this article. Therefore we highly recommend to read through the supplementary materials at the end of this article.
 
 ### Explainability
 
-## 
+Explaination of deep learning model (which involve multiple non-linear feature space transformatoin) is an art on it's own as well. Therefore we just use the well established LIME algorithm here which is capable of creating a heat map of classifier relevant sections of an image. The following code illustrates usage of this library.
 
+```python
+explanation = explainer.explain_instance(image, model.predict, ...)
+```
+
+As we can see, a LIME explainer is given an image and a pointer to a model accepting this image as input parameter. Therefore, LIME now can permutate the image until the model flips classes and that way generates a heat map of classification relevant image segments.
 
 
 # 5. Summary
-    You've learned how to visually create, schedule and run production grade, open source machine learning pipelines on top of Kubeflow using an image classifier template.
+You've learned how to visually create, schedule and run production grade, open source machine learning pipelines on top of Kubeflow using an image classifier template.
 
 # 6. Related links
 - [Cloud Annotations](https://github.com/cloud-annotations)
