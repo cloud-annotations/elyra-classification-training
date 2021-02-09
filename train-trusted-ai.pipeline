@@ -258,7 +258,8 @@
             "include_subdirectories": false,
             "outputs": [],
             "dependencies": [
-              "codait_utils.ipynb"
+              "codait_utils.ipynb",
+              "fairface_label_val.csv"
             ],
             "invalidNodeError": null,
             "ui_data": {
