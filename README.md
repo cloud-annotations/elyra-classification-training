@@ -99,7 +99,11 @@ We can can then install `elyra` and build JupyterLab
 ```
 pip install elyra && jupyter lab build
 ```
+Alternatively, the following command will bring up a ready made container on docker
 
+```
+docker run -it -p 8888:8888 -v elyra_work:/home/jovyan/work elyra/elyra:latest  jupyter-lab
+```
 
 ## The standard image classification pipeline 
 We have provided an Elyra Pipeline for training a basic classification model. The model we will be training is the MobileNet architecture. MobileNet models have a very small file size and can execute very quickly with compromising little accuracy, which makes it perfect for running on mobile devices or in the browser.
