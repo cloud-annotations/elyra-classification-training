@@ -234,7 +234,7 @@ pd.DataFrame(matrix)
 ### Fairness Assessment
 Fairness assessment and bias detection is an art on it's own. Luckily a huge number of single number metrics exist to assess bias in data and models. Here, we are using the AIF360 library which IBM donated to the Linux Foundation AI and therefore is under open governance. The following figure shows how such a single number metrics like "Statistical Parity Difference" and "Smoothed Empirical Differential Fairness" are displayed.
 
-![A confusion matrix we are generating TODO fix image caption not displayed](./images/aif1.png)
+![Different AI Fairness metrices displayed in a Jupyter notebook TODO fix image caption not displayed](./images/aif1.png)
 
 Going into more details would go beyond the scope of this article. Therefore we highly recommend to read through the supplementary materials at the end of this article.
 
