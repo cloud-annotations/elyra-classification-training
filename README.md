@@ -162,9 +162,9 @@ So what is bias? [Wikipedia](https://en.wikipedia.org/wiki/Bias) says: "Bias is 
 
 Besides their stunning performance, deep learning models face a lot of resistance for production usage because they are considered as black box. Technically (and mathematically) deep learning models are a series of non-linear feature space transformations - sounds scary, but in other words, per definition it is very hard to understand the individual processing steps a deep learning network performs. But techniques exist to look over the deep earning model's shoulders.  The one we are using here is called [LIME](https://github.com/marcotcr/lime). LIME takes the existing classification model and permutes images taken from the validation set (therefore the real class label is known) as long as a misclassification is happening. That way LIME can be used to create heat maps as image overlays to indicate regions of images which are most relevant for the classifier to perform best. In other words, we identify regions of the image the classifier is looking at. 
 
-As the following figure illustrates, the most relevant areas in an image for classifying gender are areas showing hair, eyes and mouth.
+As the following figure illustrates, the most relevant areas in an image for classifying for COVID-19 are areas containing bones over lung tissue which indicates for problem.
 
-![Example on how LIME helps to identify classification relevant areas of an image](./images/lime1.png)
+![Example on how LIME helps to identify classification relevant areas of an image](./images/lime2.png)
 
 Again, going into more details would go beyond the scope of this article. Please read through the supplementary materials at the end of this article. 
 
