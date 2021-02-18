@@ -79,28 +79,80 @@ After your bucket is created and named, it will prompt you to choose an annotati
 3. Select images then choose `Label` > `DESIRED_LABEL`
    ![](https://cloud.annotations.ai/docs-assets/generated_images@2x/label-donuts.png)
 
-## Elyra setup #TODO nick
+# Training a model
+After we have collected and labeled our first round of images, we are ready to start training our model!
+
+## Elyra
+Building an AI pipeline for a model is hard, breaking down and modularizing a pipeline is harder. A typical machine/deep learning pipeline begins as a series of preprocessing steps followed by experimentation/optimization and finally deployment. Each of these steps represent a challenge in the model development lifecycle.
+
+Elyra provides a Pipeline Visual Editor for building AI pipelines from notebooks and Python scripts, simplifying the conversion of multiple notebooks or Python scripts into batch jobs or workflows.
+
+Currently, pipelines can be executed locally in JupyterLab or on Kubeflow Pipelines.
+
+## Set up Elyra
+We will be using Elyra to train our image recognition model. Elyra is an extension to JupyterLab, so in order to use Elyra we first need to install `jupyterlab`:
+```
+pip install jupyterlab
+```
+
+We can can then install `elyra` and build JupyterLab
+```
+pip install elyra && jupyter lab build
+```
+Alternatively, the following command will bring up a ready made container on docker
+
+```
+docker run -it -p 8888:8888 -v elyra_work:/home/jovyan/work elyra/elyra:latest  jupyter-lab
+```
+
+## The standard image classification pipeline 
+We have provided an Elyra Pipeline for training a basic classification model. The model we will be training is the MobileNet architecture. MobileNet models have a very small file size and can execute very quickly with compromising little accuracy, which makes it perfect for running on mobile devices or in the browser.
+
+When we say we are training the model, we are technically re-training the model. The model we are training has already been trained on millions of image and thousands of categories ranging from ducks to airplanes. This helps teach the model ideas like basic edges and shapes, letting us train it on the things we care about with little training data.
+
+`git clone` the repo and `cd` into it by running the following command:
+```
+git clone https://github.com/cloud-annotations/elyra-classification.git
+cd elyra-classification
+```
+
+You should see a file named `env.template`. This file needs to be updated with your IBM Cloud Object Storage credentials. Once you've updated it, rename the file to `.env`:
+```
+BUCKET=<your-bucket-name>
+ACCESS_KEY_ID=<your-key-id>
+SECRET_ACCESS_KEY=<your-key-secret>
+ENDPOINT_URL=https://<public-cos-endpoint>
+```
+
+Start JupyterLab and open `train.pipeline`:
+```
+jupyter lab
+```
+
+You should see a simple pipeline that looks something like this:
+![](./images/simple_pipeline.png)
+
+
+## Local Execution
+Later, we will show you how to set up and run your pipeline on Kubeflow, but for now we can test that our pipeline is working by running locally.
+
+We can run our pipeline locally by clicking the run button:
+![](./images/run_pipeline.png)
+
+Then choose `Run in-place locally`:
+![](./images/run_locally.png)
+
+The pipeline should take a few minutes to execute locally. Once finished, if your training was successful, you should see a `model` folder with a `saved_model.pb` inside it.
+
 
 ## Kubeflow Pipelines setup #TODO romeo
 
-
-# The standard image classification pipeline #TODO nick
-#TODO nick please write some paragraphs on the pipeline concept and how it relates to ml-ops
-
-## Data Preparation
-TODO nick explain the folder/label format: The de-facto standard for ....
-
-## Model Training
-
-## Introducing the Elyra Pipeline Editor #TODO nick
-
-### Local Execution #TODO nick
-
-### Execution on Kubeflow #TODO nick
+## Execution on Kubeflow #TODO romeo
 
 
 
-# The TrustedAI image classicifation pipeline ##TODO romeo
+
+# The TrustedAI image classification pipeline ##TODO romeo
 In this section we ant to introduce you to TrustedAI with it's subcategories "Bias/Fairness detection", "Explainability" and "Adversarial Robustness".
 
 ## Bias/Fairness detection detection 
@@ -136,13 +188,13 @@ As already mentioned previously, pipelines are a great way to introduce reproduc
 In the following we'll walk you through the different pipeline steps and associated code snippets worth having a closer look at.
 
 ## Data Preparation
-In this particular case, we're not pulling Cloud Annotations export data from a S3/Cloud Object Store as before but directly access it from a Cloud Object Store via a public and permanent link. As described before, the the de-facto standard for labeled image data is putting images into one folder per class/category. But in this particular case, the raw data isn't in the required format. It's just a folder full of images and their properties are described in a separate CSV file. In addition to the class (or label) - gender in this case -  this CSV file also contains information on the race and age group. So first, we just use the information on the gender label given in the CSV file and arrange the images in the appropriate folder struture. The following figure illustrates this.
+In this particular case, we're not pulling Cloud Annotations export data from a S3/Cloud Object Store as before but directly access it from a Cloud Object Store via a public and permanent link. As described before, the the de-facto standard for labeled image data is putting images into one folder per class/category. But in this particular case, the raw data isn't in the required format. It's just a folder full of images and their properties are described in a separate CSV file. In addition to the class (or label) - gender in this case -  this CSV file also contains information on the race and age group. So first, we just use the information on the gender label given in the CSV file and arrange the images in the appropriate folder structure. The following figure illustrates this.
 
 ![Desired folder structure of training and validation data TODO fix image caption not displayed](./images/images_folder_tree.png)
 
 
 ## Model Training
-Understanding, defining and training deep learning models is an art on it's own. Luckuly, the community trends towards pre-defined models. Here, we are using the so called MobileNetV2 which ships with the TensorFlow distribution - ready to use, without any further definition of neurons or layers. As the following code shows, only a couple of parameters need to be specified.
+Understanding, defining and training deep learning models is an art on it's own. Luckily, the community trends towards pre-defined models. Here, we are using the so called MobileNetV2 which ships with the TensorFlow distribution - ready to use, without any further definition of neurons or layers. As the following code shows, only a couple of parameters need to be specified.
 
 ```python
 model = tf.keras.applications.MobileNetV2(
@@ -169,7 +221,7 @@ As you can see, 17479 images have been correctly predicted as female, only 2025 
 
 So using the confusion matrix we see that our classifier is already doing quite good for females but very bad for males.
 
-This of course comes in quite handy as well if we want to asses bias towards unterpreviledged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
+This of course comes in quite handy as well if we want to asses bias towards underprivileged groups. So let's extend the previous example and include a protected attribute - here, race, for example into the evaluation.
 
 The following python code shows how the confusion matrix can be computed for different subsets based on age group and race:
 
@@ -188,7 +240,7 @@ Going into more details would go beyond the scope of this article. Therefore we 
 
 ### Explainability
 
-Explaination of deep learning model (which involve multiple non-linear feature space transformatoin) is an art on it's own as well. Therefore we just use the well established LIME algorithm here which is capable of creating a heat map of classifier relevant sections of an image. The following code illustrates usage of this library.
+Explanation of deep learning model (which involve multiple non-linear feature space transformation) is an art on it's own as well. Therefore we just use the well established LIME algorithm here which is capable of creating a heat map of classifier relevant sections of an image. The following code illustrates usage of this library.
 
 ```python
 explanation = explainer.explain_instance(image, model.predict, ...)
