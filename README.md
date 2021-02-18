@@ -187,8 +187,8 @@ As already mentioned previously, pipelines are a great way to introduce reproduc
 
 In the following we'll walk you through the different pipeline steps and associated code snippets worth having a closer look at.
 
-## Data Preparation
-In this particular case, we're not pulling Cloud Annotations export data from a S3/Cloud Object Store as before but directly access it from a Cloud Object Store via a public and permanent link. As described before, the the de-facto standard for labeled image data is putting images into one folder per class/category. But in this particular case, the raw data isn't in the required format. It's just a folder full of images and their properties are described in a separate CSV file. In addition to the class (or label) - gender in this case -  this CSV file also contains information on the race and age group. So first, we just use the information on the gender label given in the CSV file and arrange the images in the appropriate folder structure. The following figure illustrates this.
+## Input stage
+In this particular case, we're not pulling Cloud Annotations export data from a S3/Cloud Object Store as before but directly access it from a GitHub repository via a public and permanent link. As described before, the the de-facto standard for labeled image data is putting images into one folder per class/category. But in this particular case, the raw data isn't in the required format. It's just a folder full of images and their properties are described in a separate CSV file. In addition to the class (or label) - finding in this case - this CSV file also contains information on the gender and age. So first, we just use the information on the finding label given in the CSV file and arrange the images in the appropriate folder structure. The following figure illustrates this.
 
 ![Desired folder structure of training and validation data TODO fix image caption not displayed](./images/images_folder_tree.png)
 
